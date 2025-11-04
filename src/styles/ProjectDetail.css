@@ -1,0 +1,54 @@
+/* src/pages/ProjectDetail.css & src/styles/GlobalStyles.css */
+
+/* Estado inicial (oculto) para todos los elementos envueltos */
+.hidden-initial {
+  opacity: 0;
+}
+
+/* Animación: Deslizamiento desde la izquierda */
+.slide-in-left {
+  animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación: Deslizamiento desde la derecha */
+.slide-in-right {
+  animation: slideInRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación: Aparecer y escalar suavemente */
+.fade-in-scale {
+  animation: fadeInScale 1s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

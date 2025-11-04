@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview",
+    "vercel-build": "npm run build"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

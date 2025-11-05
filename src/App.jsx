@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
+import Contact from './pages/Contact';
 import ProjectDetail from './pages/ProjectDetail';
 import Header from './components/Header';
 import './styles/GlobalStyles.css'; // Estilos globales
@@ -14,12 +15,10 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* Ruta para el Proyecto 1: Rediseño Topitop */}
-          <Route path="/proyectos/topitop" element={<ProjectDetail projectId="topitop" />} />
-          {/* Ruta para el Proyecto 2: Reto de apps */}
-          <Route path="/proyectos/reto-apps" element={<ProjectDetail projectId="reto-apps" />} />
+          {/* Ruta dinámica para detalles de proyectos */}
+          <Route path="/proyectos/:projectId" element={<ProjectDetail />} />
           <Route path="/sobre-mi" element={<About />} />
-          <Route path="/contacto" element={/* Componente de Contacto */} />
+          <Route path="/contacto" element={<Contact />} />
           {/* Opcional: Ruta para ver todos los proyectos si los separas de Home */}
           {/* <Route path="/proyectos" element={<Projects />} /> */}
         </Routes>

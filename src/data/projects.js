@@ -9,7 +9,7 @@ const PROJECTS_DATA = [
     year: 2025,
     tool: 'Figma',
     link: '/proyectos/topitop',
-    
+    previewImage: '/assets/images/home/desktop/banner_home_desktop_1.png',
     // Contenido detallado para ProjectDetail.jsx
     detail: {
       problem: 'Con más de 40 años de trayectoria, Topitop es un referente. Sin embargo, su web no transmitía completamente la esencia de la marca ni respondía de manera óptima a las necesidades de los usuarios.',
@@ -37,7 +37,7 @@ const PROJECTS_DATA = [
     year: 2024,
     tool: 'Figma, Proxima Nova, Roboto Flex',
     link: '/proyectos/reto-apps',
-
+    previewImage: '/assets/images/home/desktop/banner_home_desktop_2.png',
     // Contenido detallado
     detail: {
       problem: 'Un ejercicio personal para explorar diferentes problemáticas de UX y UI en periodos cortos.',
@@ -54,7 +54,31 @@ const PROJECTS_DATA = [
       }
     }
   },
-  // Aquí iría el Proyecto 3: App de manualidades
+  {
+    id: 'proyecto-manualidades',
+    title: 'Proyecto Manualidades',
+    subtitle: 'App móvil para aprender y compartir manualidades, fomentando la creatividad.',
+    tags: ['UX Research', 'UI Design', 'Prototipado'],
+    year: 2023,
+    tool: 'Figma, Miro',
+    link: '/proyectos/proyecto-manualidades',
+    previewImage: '/assets/images/home/desktop/banner_home_desktop_3.png',
+
+    detail: {
+      problem: 'Las personas buscan nuevas formas de ocio creativo y una comunidad donde compartir sus proyectos.',
+      objective: 'Crear una plataforma intuitiva para descubrir, aprender y compartir proyectos de manualidades paso a paso.',
+      methodology: [
+        'Análisis de competidores y entrevistas con usuarios interesados en manualidades.',
+        'Diseño de flujos de usuario y wireframes para las funciones clave (explorar, crear, compartir).',
+        'Creación de prototipos de alta fidelidad y pruebas de usabilidad.',
+      ],
+      images: {
+        hero: '/assets/images/manualidades/manualidades-hero.png',
+        screen1: '/assets/images/manualidades/manualidades-screen1.png',
+        screen2: '/assets/images/manualidades/manualidades-screen2.png',
+      }
+    }
+  },
 ];
 
 export default PROJECTS_DATA;

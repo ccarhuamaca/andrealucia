@@ -1,54 +1,159 @@
-/* src/pages/ProjectDetail.css & src/styles/GlobalStyles.css */
+/* src/pages/ProjectDetail.css */
 
-/* Estado inicial (oculto) para todos los elementos envueltos */
-.hidden-initial {
-  opacity: 0;
+.project-detail-container {
+  max-width: 900px; /* Un poco más estrecho para el contenido del caso de estudio */
+  margin: var(--spacing-xxl) auto;
+  padding: 0 var(--spacing-md);
 }
 
-/* Animación: Deslizamiento desde la izquierda */
-.slide-in-left {
-  animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+/* --- Hero Section --- */
+.project-hero {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
+.metadata {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-medium);
+  font-size: var(--font-size-base);
+}
+
+.metadata strong {
+  color: var(--color-text-dark);
+  font-weight: var(--font-weight-semibold);
+}
+
+.project-title {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+}
+
+.project-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-medium);
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  height: 450px; /* Altura para el banner */
+  background-color: var(--color-background-light);
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-top: var(--spacing-xl);
+  box-shadow: 0 5px 15px var(--color-shadow-light);
+}
+
+/* --- Secciones de Contenido (Problema, Objetivo, Metodología, etc.) --- */
+section {
+  background-color: var(--color-background-white);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-xxl);
+  box-shadow: 0 2px 10px var(--color-shadow-light);
+}
+
+section h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark); /* Títulos de sección con color de acento */
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+section p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.content-grid h3 {
+  font-size: var(--font-size-h3);
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.methodology-section ul {
+  list-style: none; /* Eliminar viñetas por defecto */
+  padding: 0;
+}
+
+.methodology-section li {
+  position: relative;
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-dark);
+}
+
+.methodology-section li::before { /* Viñetas personalizadas */
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+}
+
+.image-mockups {
+  display: flex;
+  flex-direction: column; /* Apilar imágenes verticalmente por defecto */
+  gap: var(--spacing-lg);
+  align-items: center;
+  margin-top: var(--spacing-xl);
+}
+
+.image-mockups img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px var(--color-shadow-medium);
+}
+
+/* Para dos imágenes lado a lado en escritorio */
+@media (min-width: 768px) {
+  .image-mockups.two-columns { /* Añadir esta clase cuando quieras dos columnas */
+    flex-direction: row;
+    justify-content: center;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  .image-mockups.two-columns img {
+    max-width: 48%; /* Aproximadamente la mitad menos el gap */
   }
 }
 
-/* Animación: Deslizamiento desde la derecha */
-.slide-in-right {
-  animation: slideInRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
+/* --- Media Queries --- */
+@media (max-width: 768px) {
+  .metadata {
+    flex-direction: column; /* Apilar metadata en móvil */
+    gap: var(--spacing-sm);
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  .project-title {
+    font-size: var(--font-size-h2);
   }
-}
-
-/* Animación: Aparecer y escalar suavemente */
-.fade-in-scale {
-  animation: fadeInScale 1s ease-out forwards;
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
+  .hero-image-placeholder {
+    height: 250px;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .content-grid {
+    grid-template-columns: 1fr; /* Una columna en móvil */
+  }
+  section {
+    padding: var(--spacing-md);
+  }
+  section h2 {
+    font-size: var(--font-size-h3);
+  }
+  .methodology-section li {
+    font-size: var(--font-size-base);
   }
 }

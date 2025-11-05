@@ -1,7 +1,7 @@
 // src/components/Header.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'; // Para los estilos y el toggle móvil
+import '../styles/Header.css'; // Para los estilos y el toggle móvil
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ const Header = () => {
       
       {/* Menú de Escritorio */}
       <nav className="desktop-nav">
-        <Link to="/proyectos">Proyectos</Link>
+        <Link to="/">Proyectos</Link>
         <Link to="/sobre-mi">Sobre mí</Link>
         <Link to="/contacto">Contacto</Link>
       </nav>

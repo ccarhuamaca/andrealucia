@@ -1,164 +1,161 @@
 /* src/styles/GlobalStyles.css */
 
-/* Importación de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* --- Importación de Fuentes --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); /* Usaremos Inter para el cuerpo de texto por su legibilidad */
 
+
+/* --- Variables CSS --- */
 :root {
-  /* --- Tipografía --- */
-  --font-primary: 'Poppins', sans-serif;
-  --font-body: 'Arial', sans-serif; /* Alternativa legible para cuerpo de texto */
-  
-  /* Definir pesos de fuente clave */
-  --font-light: 300;
-  --font-regular: 400;
-  --font-semibold: 600;
-  --font-bold: 700;
+  /* Colores */
+  --color-primary: #8C52FF;          /* Morado de acento */
+  --color-primary-dark: #6C3EDF;     /* Morado más oscuro para hover/activos */
+  --color-background-light: #F8F8F8; /* Gris claro de fondo para secciones */
+  --color-background-white: #FFFFFF; /* Blanco puro para fondo principal */
+  --color-text-dark: #333333;        /* Texto principal (negro grisáceo) */
+  --color-text-medium: #666666;      /* Texto secundario/descripciones */
+  --color-text-light: #999999;       /* Texto muy claro */
+  --color-border: #E0E0E0;           /* Borde sutil */
+  --color-shadow-light: rgba(0, 0, 0, 0.05); /* Sombra muy ligera */
+  --color-shadow-medium: rgba(0, 0, 0, 0.1); /* Sombra para hover */
 
-  /* --- Colores --- */
-  --color-primary: #8C52FF;      /* Morado de acento para enlaces y botones (Accent Color) */
-  --color-primary-dark: #6C3EDF; /* Variante oscura para hover */
-  --color-background: #FFFFFF;   /* Fondo principal */
-  --color-secondary-bg: #F8F8F8; /* Fondo sutil para secciones */
-  --color-text-dark: #333333;    /* Texto principal */
-  --color-text-light: #666666;   /* Texto secundario/descripciones */
-  --color-border: #EEEEEE;       /* Bordes sutiles */
-  --color-tag: #E6E0FF;          /* Fondo para las etiquetas de proyecto (pills) */
+  /* Tipografía */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-base: 1rem; /* 16px */
+  --font-size-h1: 3rem;   /* 48px */
+  --font-size-h2: 2rem;   /* 32px */
+  --font-size-h3: 1.5rem; /* 24px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-xs: 0.75rem;  /* 12px */
+
+  /* Espaciado */
+  --spacing-xs: 0.5rem;  /* 8px */
+  --spacing-sm: 1rem;    /* 16px */
+  --spacing-md: 1.5rem;  /* 24px */
+  --spacing-lg: 2rem;    /* 32px */
+  --spacing-xl: 3rem;    /* 48px */
+  --spacing-xxl: 4rem;   /* 64px */
+  --container-max-width: 1200px; /* Ancho máximo del contenido */
 }
 
-body {
-  font-family: var(--font-body); /* Usar una fuente más neutra para el cuerpo */
-  font-weight: var(--font-regular);
-  color: var(--color-text-dark);
+
+/* --- Reset Básico y Estilos Generales --- */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, .logo {
-  font-family: var(--font-primary); /* Usar Poppins para títulos y marca */
-  font-weight: var(--font-bold);
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contenedor principal para centrar el contenido */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md); /* Padding lateral */
+}
+
+/* Tipografía de Títulos */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-sm);
   line-height: 1.2;
 }
 
-/* Animación de aparición (fade-in) y deslizamiento hacia arriba */
+h1 { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); }
+h2 { font-size: var(--font-size-h2); font-weight: var(--font-weight-semibold); }
+h3 { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); }
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Enlaces */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Botones genéricos */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-background-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--color-shadow-light);
+}
+
+/* Animaciones básicas */
 .fade-in-up {
   animation: fadeInUp 1s ease-out forwards;
   opacity: 0;
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Aplicar un pequeño retraso a elementos secundarios */
 .slide-in-delay {
-  animation: slideIn 1s ease-out 0.5s forwards; /* Retraso de 0.5s */
+  animation: slideIn 1s ease-out 0.5s forwards;
   opacity: 0;
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* src/pages/ProjectDetail.css & src/styles/GlobalStyles.css */
-
-/* Estado inicial (oculto) para todos los elementos envueltos */
-.hidden-initial {
-  opacity: 0;
+/* Animación de pulso para placeholders de imagen */
+.pulse-on-load {
+  animation: pulse 1.5s infinite alternate;
 }
 
-/* Animación: Deslizamiento desde la izquierda */
-.slide-in-left {
-  animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Animación: Deslizamiento desde la derecha */
-.slide-in-right {
-  animation: slideInRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Animación: Aparecer y escalar suavemente */
-.fade-in-scale {
-  animation: fadeInScale 1s ease-out forwards;
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* src/styles/GlobalStyles.css o un archivo de utilidades */
-
-/* Estilo para botones de acción principal */
-.cv-button, .submit-button {
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  font-family: var(--font-primary);
-  font-weight: var(--font-semibold);
-  padding: 12px 25px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none; /* Para enlaces estilizados como botones */
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-.cv-button:hover, .submit-button:hover {
-  background-color: var(--color-primary-dark);
-}
-
-/* Estilo para el enlace 'Ver más' en las tarjetas de proyecto */
-.ver-mas-link {
-  color: var(--color-text-dark);
-  font-weight: var(--font-semibold);
-  text-decoration: none;
-  border-bottom: 2px solid var(--color-primary); /* Subrayado de acento */
-  transition: color 0.3s ease;
-}
-
-.ver-mas-link:hover {
-  color: var(--color-primary);
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
 }

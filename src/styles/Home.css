@@ -1,0 +1,181 @@
+/* src/styles/Home.css (Modificaciones clave para el ancho dinámico) */
+
+/* Contenedor del scroll (Se mantiene igual) */
+.projects-preview {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0; 
+  gap: 0; 
+  transition: all 0.5s ease-out; /* Animación para el cambio de ancho */
+}
+
+/* 1. Estilo BASE para Project Card Container (INACTIVO) */
+.projects-preview .project-card-container {
+  /* Ancho base para proyectos inactivos (25% en este ejemplo, pero lo ajustaremos abajo) */
+  flex: 0 0 25%; /* Valor de inicio/final que será sobreescrito */
+  scroll-snap-align: start;
+  min-width: 25%;
+  padding: 0 var(--spacing-sm);
+  transition: flex-basis 0.5s ease-out, min-width 0.5s ease-out; /* Animación de ancho */
+}
+
+
+/* 2. Ancho por defecto (33.33%) y Ancho ACTIVO (50%) */
+/* Aplicamos los estilos al contenedor de la tarjeta para controlar el ancho */
+.projects-preview .project-card-container {
+    /* Por defecto, si el estado no está activo ni inactivo (ej. 3 proyectos): 33.33% */
+    flex: 0 0 33.333%;
+    min-width: 33.333%;
+}
+
+/* 3. Definición del Ancho ACTIVO (Se aplica solo a la tarjeta con la clase is-active) */
+.projects-preview .project-card-container .project-card.is-active {
+    /* Sobreescribimos el ancho del CONTENEDOR cuando la tarjeta INTERNA está activa */
+    /* Usamos el selector de padre-hijo inverso para apuntar al contenedor */
+    /* 🚨 Nota: Esto requiere CSS anidado o un selector específico en navegadores modernos. 
+       Para máxima compatibilidad, aplicamos el estilo al contenedor. */
+}
+
+/* ** Solución compatible y funcional: Targeteamos el Contenedor cuando la Tarjeta es Activa ** */
+/* Usamos el selector de contenedor de forma directa: */
+.projects-preview .project-card-container {
+    flex: 0 0 25%; /* Inactivo por defecto (asumiremos que hay 4 para el cálculo) */
+    min-width: 25%;
+}
+
+/* Adaptamos la clase 'is-active' para que modifique el contenedor padre */
+/* En React es más fácil si la clase 'is-active' está en el contenedor, no solo en la tarjeta. */
+
+/* ** Vamos a mover la clase 'is-active' al contenedor en Home.jsx ** */
+
+/* [MODIFICACIÓN EN CSS TRAS CAMBIO EN JSX]: */
+
+/* Tarjeta Inactiva (Ejemplo con 3 proyectos: 25% cada inactivo) */
+.projects-preview .project-card-container {
+    flex: 0 0 25%; 
+    min-width: 25%;
+}
+
+/* Tarjeta Activa (50%) */
+.projects-preview .project-card-container.is-active {
+    flex: 0 0 50%;
+    min-width: 50%;
+}
+
+/* Si tienes exactamente 3 proyectos, el cálculo será: */
+/* Inactivo: 25% | Activo: 50% | Inactivo: 25% */
+
+
+/* --- Media Queries (Adaptabilidad) --- */
+@media (max-width: 1024px) {
+  .projects-preview .project-card-container {
+    flex: 0 0 50%;
+    min-width: 50%;
+  }
+  .projects-preview .project-card-container.is-active {
+    flex: 0 0 80%; /* 80% activo, 20% inactivo (si solo hay 2 visibles) */
+    min-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-preview .project-card-container,
+  .projects-preview .project-card-container.is-active {
+    flex: 0 0 100%; /* Siempre 100% en móvil */
+    min-width: 100%;
+  }
+}
+
+/* 4. Aseguramos que la Project Card ocupe todo su contenedor */
+.project-card {
+  height: 100%;
+  width: 100%;
+}
+
+/* 5. Ajuste Responsive: En móvil (menos de 768px), volvemos a mostrar solo un proyecto a la vez */
+@media (max-width: 1024px) {
+  .projects-preview .project-card-container {
+    flex: 0 0 50%; /* Dos proyectos visibles en tablet (o 50%) */
+    min-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-preview .project-card-container {
+    flex: 0 0 95%; /* Un proyecto visible en móvil (casi el 100%) */
+    min-width: 95%;
+    padding: 0 var(--spacing-xs);
+  }
+}
+
+.home-container {
+  padding-bottom: var(--spacing-xxl);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-background-white);
+}
+
+.hero-section h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-section .subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-medium);
+  margin-bottom: var(--spacing-xxl);
+}
+
+/* --- Projects Preview Section (Horizontal Scroll) --- */
+.projects-preview-wrapper {
+  position: relative; /* Para posicionar las flechas */
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg) 0;
+}
+
+.projects-preview {
+  display: flex;
+  overflow-x: auto; /* Permite el scroll horizontal */
+  scroll-snap-type: x mandatory; /* Para un scroll suave entre proyectos */
+  -webkit-overflow-scrolling: touch; /* Mejorar el scroll en iOS */
+  padding: var(--spacing-sm) var(--spacing-md); /* Padding para que los items no toquen los bordes */
+  gap: var(--spacing-xl); /* Espacio entre proyectos */
+  
+  /* Ocultar la barra de scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.projects-preview::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* --- Footer Info --- */
+.footer-info {
+  text-align: center;
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: var(--font-size-h2); /* Menos grande en móvil */
+  }
+  .scroll-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: var(--font-size-xs);
+  }
+}
